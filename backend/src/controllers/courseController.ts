@@ -6,12 +6,13 @@ export const fetchAllCourses = async (req:Request, res:Response) => {
       const courses = await db.course.findMany();
       return res.status(200).json(courses);
     } catch (e) {
-      return res.status(500).json(e);
+      return res.status(500).json({msg:"no course found"});
     }
   }
 
 export const purchaseCourse = async(req:Request, res:Response)=>{
-    const {userId,courseId}= req.body;
+    const {courseId}= req.body;
+    const userId = req.userId as string;
     try{
       const buy = await db.purchasedCourseDetails.create({
         data:{

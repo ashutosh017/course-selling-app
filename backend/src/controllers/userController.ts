@@ -67,10 +67,11 @@ export const fetchUserCourses = async(req:Request, res:Response)=>{
         const data = await db.purchasedCourseDetails.findMany({
             where:{userId}
         })
-        let courses = new Array()
-        data.map(async i=>{
-            courses.push(await db.course.findUnique({where:{id:i.courseId}}))
-        })
+        const courses = await Promise.all(
+          data.map(async (i) => {
+            return await db.course.findUnique({ where: { id: i.courseId } });
+          })
+        );
         return res.json({
             courses
         })

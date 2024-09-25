@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT_USER_SECRET } from "../config/constants";
-import { z } from "zod";
 
 export const isUserLoggedIn = (
   req: Request,

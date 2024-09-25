@@ -100,19 +100,15 @@ export const createCourse = async (req: Request, res: Response) => {
   }
 };
 export const updateCourse = async (req: Request, res: Response) => {
-  const {courseId, adminId} = req.body
+  const adminId = req.adminId as string
+  const {courseId, name,description,price,imgUrl} = req.body
   try {
-    const course = await db.course.findUnique({
-      where:{
-        id:courseId,adminId
-      }
-    })
-    if(!course)return res.json({msg:"no course found"})
+   
     const updateCourse = await db.course.update({
       where:{
         id:courseId,adminId
       },data:{
-        ...course
+        name,description,price,imgUrl
       }
     })
     return res.status(200).json({msg:"course updated successfully",updateCourse})
@@ -120,3 +116,19 @@ export const updateCourse = async (req: Request, res: Response) => {
     return res.json(error)
   }
 };
+
+export const deleteCourse = async (req:Request,res:Response)=>{
+  const {courseId} = req.body;
+  try{
+    await db.course.delete({
+      where:{
+        id:courseId
+      }
+    })
+    res.json({msg:"course deleted successfully"})
+  }catch(error){
+    return res.json({msg:"course does not exist anymore"})
+  }
+
+
+}

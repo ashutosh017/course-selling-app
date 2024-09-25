@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT_ADMIN_SECRET } from "../config/constants";
+import db from "../db";
 
 export const isAdminLoggedIn = (
   req: Request,
@@ -9,7 +10,7 @@ export const isAdminLoggedIn = (
 ) => {
   const token = req.headers.token;
   if (!token) {
-    res.status(401).json({ msg: "user not signed in" });
+    res.status(401).json({ msg: "Admin not signed in" });
     return;
   }
   const tokenString = Array.isArray(token) ? token[0] : token;
@@ -22,3 +23,24 @@ export const isAdminLoggedIn = (
     return res.status(403).json({ msg: "Invalid or expired token" });
   }
 };
+
+export const isCourseExists = async(req:Request, res:Response, next:NextFunction)=>{
+  const adminId = req.adminId as string;
+  const {courseId} = req.body;
+  if(!adminId || !courseId){
+    return res.json({
+      msg:"adminId or courseId is missing"
+    })
+  }
+  try{
+
+    const foundCourse = await db.course.findUnique({
+      where:{
+        id:courseId, adminId
+      }
+    })
+    next();
+  }catch(error){
+    return res.json({msg:"no course found"})
+  }
+}
