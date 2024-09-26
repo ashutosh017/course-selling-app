@@ -3,8 +3,9 @@ import 'dotenv/config'
 import userRouter from './routes/userRouter'
 import adminRouter from './routes/adminRouter';
 import courseRouter from './routes/courseRouter';
-
+import cors from 'cors'
 const app = express();
+app.use(cors())
 const PORT = process.env.PORT ?? 3000
 
 app.use(express.json())
