@@ -54,7 +54,7 @@ export default function Gate() {
       setMsg("Password Must Be Atleast 5 Characters Long.");
       return;
     }
-    let res, err;
+    let res ;
     if (as === "User" && sign === "In") {
       try {
         res = await axios.post(`${be_url}/user/signin`, {
@@ -65,7 +65,6 @@ export default function Gate() {
         setRedirectTo("/user")
         // navigate("/user");
       } catch (e) {
-        err = e;
         setMsg("Invalid Credentials.");
       }
     } else if (as === "User" && sign === "Up") {
@@ -80,7 +79,6 @@ export default function Gate() {
         // navigate("/user");
         setRedirectTo("/user")
       } catch (e) {
-        err = e;
         setMsg("There's An Error While Signing You Up.");
       }
     } else if (as === "Admin" && sign === "In") {
@@ -92,7 +90,6 @@ export default function Gate() {
         // navigate("/admin");
         setRedirectTo("/admin")
       } catch (e) {
-        err = e;
         setMsg("Invalid Credentials.");
       }
     } else if (as === "Admin" && sign === "Up") {
@@ -107,7 +104,6 @@ export default function Gate() {
         // navigate("/admin");
         setRedirectTo("/admin")
       } catch (e) {
-        err = e;
         console.log("error: ", e);
         setMsg("There's An Error While Signing You Up.");
       }
