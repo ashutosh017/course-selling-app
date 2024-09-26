@@ -10,6 +10,7 @@ export default function Gate() {
   const [showSignInForm, setShowSignInForm] = useState(false);
   const [as, setAs] = useState("User");
   const [sign, setSign] = useState("In");
+  const [redirectTo, setRedirectTo] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,7 +62,8 @@ export default function Gate() {
           password: formData.password,
         });
         setMsg("");
-        navigate("/user");
+        setRedirectTo("/user")
+        // navigate("/user");
       } catch (e) {
         err = e;
         setMsg("Invalid Credentials.");
@@ -75,7 +77,8 @@ export default function Gate() {
           ...formData,
         });
         setMsg("");
-        navigate("/user");
+        // navigate("/user");
+        setRedirectTo("/user")
       } catch (e) {
         err = e;
         setMsg("There's An Error While Signing You Up.");
@@ -86,7 +89,8 @@ export default function Gate() {
           ...formData,
         });
         setMsg("");
-        navigate("/admin");
+        // navigate("/admin");
+        setRedirectTo("/admin")
       } catch (e) {
         err = e;
         setMsg("Invalid Credentials.");
@@ -100,7 +104,8 @@ export default function Gate() {
           ...formData,
         });
         setMsg("");
-        navigate("/admin");
+        // navigate("/admin");
+        setRedirectTo("/admin")
       } catch (e) {
         err = e;
         console.log("error: ", e);
@@ -112,6 +117,12 @@ export default function Gate() {
       email: "",
       password: "",
     });
+    if(!res){
+        return;
+     
+    }
+    localStorage.setItem("token",res.data.token);
+    navigate(redirectTo)
     console.log("response: ", res);
   };
   return (
