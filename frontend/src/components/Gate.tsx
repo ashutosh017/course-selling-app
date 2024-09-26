@@ -54,7 +54,7 @@ export default function Gate() {
       setMsg("Password Must Be Atleast 5 Characters Long.");
       return;
     }
-    let res ;
+    let res;
     if (as === "User" && sign === "In") {
       try {
         res = await axios.post(`${be_url}/user/signin`, {
@@ -62,7 +62,7 @@ export default function Gate() {
           password: formData.password,
         });
         setMsg("");
-        setRedirectTo("/user")
+        setRedirectTo("/user");
         // navigate("/user");
       } catch (e) {
         setMsg("Invalid Credentials.");
@@ -77,7 +77,7 @@ export default function Gate() {
         });
         setMsg("");
         // navigate("/user");
-        setRedirectTo("/user")
+        setRedirectTo("/user");
       } catch (e) {
         setMsg("There's An Error While Signing You Up.");
       }
@@ -88,7 +88,7 @@ export default function Gate() {
         });
         setMsg("");
         // navigate("/admin");
-        setRedirectTo("/admin")
+        setRedirectTo("/admin");
       } catch (e) {
         setMsg("Invalid Credentials.");
       }
@@ -102,7 +102,7 @@ export default function Gate() {
         });
         setMsg("");
         // navigate("/admin");
-        setRedirectTo("/admin")
+        setRedirectTo("/admin");
       } catch (e) {
         console.log("error: ", e);
         setMsg("There's An Error While Signing You Up.");
@@ -113,12 +113,11 @@ export default function Gate() {
       email: "",
       password: "",
     });
-    if(!res){
-        return;
-     
+    if (!res) {
+      return;
     }
-    localStorage.setItem("token",res.data.token);
-    navigate(redirectTo)
+    localStorage.setItem("token", res.data.token);
+    navigate(redirectTo);
     console.log("response: ", res);
   };
   return (
@@ -263,9 +262,7 @@ export default function Gate() {
           <button
             onClick={() => {
               handleClick();
-              (() => {
-                setAs("User");
-              })();
+              setAs("User");
             }}
             className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
           >
@@ -274,9 +271,7 @@ export default function Gate() {
           <button
             onClick={() => {
               handleClick();
-              (() => {
-                setAs("Admin");
-              })();
+              setAs("Admin");
             }}
             className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
           >
