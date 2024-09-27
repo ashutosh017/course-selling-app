@@ -1,13 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 export const be_url = import.meta.env.VITE_BACKEND_URL;
 export default function Gate() {
   const navigate = useNavigate();
-  const [something, setSomething] = useState(false);
-  const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const [showSignInForm, setShowSignInForm] = useState(false);
+  //   const [something, setSomething] = useState(false);
+  //   const [showSignUpForm, setShowSignUpForm] = useState(false);
+  //   const [showSignInForm, setShowSignInForm] = useState(false);
   const [as, setAs] = useState("User");
   const [sign, setSign] = useState("In");
   const [formData, setFormData] = useState({
@@ -16,28 +16,29 @@ export default function Gate() {
     password: "",
   });
   const [msg, setMsg] = useState("");
-  const handleBack = () => {
-    if (showSignInForm) {
-      setShowSignInForm(false);
-    } else if (showSignUpForm) {
-      setShowSignUpForm(false);
-    } else {
-      setSomething(!something);
-    }
-    setMsg("");
-  };
+  //   const handleBack = () => {
+  //     if (showSignInForm) {
+  //       setShowSignInForm(false);
+  //     } else if (showSignUpForm) {
+  //       setShowSignUpForm(false);
+  //     } else {
+  //       setSomething(!something);
+  //     }
+  //     setMsg("");
+  //   };
 
-  const handleSignIn = () => {
-    setShowSignInForm(true);
-    setSign("In");
-  };
-  const handleSignUp = () => {
-    setShowSignUpForm(true);
-    setSign("Up");
-  };
-  const handleClick = () => {
-    setSomething(true);
-  };
+//   const handleSignIn = () => {
+//     // setShowSignInForm(true);
+//     setSign("In");
+//   };
+//   const handleSignUp = () => {
+//     // setShowSignUpForm(true);
+//     setSign("Up");
+//   };
+//   const handleClick = () => {
+//     // setSomething(true);
+//     // navigate("/signinsignup");
+//   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -121,8 +122,8 @@ export default function Gate() {
     console.log("response: ", res);
   };
   return (
-    <>
-      <div className=" top-4 m-4 fixed  ">
+    <div className="mt-20 ">
+      {/* <div className=" m-4   ">
         {something && (
           <button
             onClick={handleBack}
@@ -132,175 +133,207 @@ export default function Gate() {
             {`\< `}Back
           </button>
         )}
-      </div>
-
-      {showSignInForm ? (
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">
-            Sign {`${sign}`} As {`${as}`}
-          </h1>
-          <div className="mx-4 text-center flex flex-col items-center justify-center">
-            <form
-              onSubmit={handleSubmit}
-              className=" p-6 rounded shadow-md w-full max-w-sm"
-            >
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-bold mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="text-black shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label
-                  htmlFor="password"
-                  className="block  text-sm font-bold mb-2"
+      </div> */}
+      <Routes>
+        <Route
+          path="/signinform"
+          element={
+            <div className="text-center">
+              <h1 className="text-2xl font-bold mb-4">
+                Sign In As {`${as}`}
+              </h1>
+              <div className="mx-4 text-center flex flex-col items-center justify-center">
+                <form
+                  onSubmit={handleSubmit}
+                  className=" p-6 rounded shadow-md w-full max-w-sm"
                 >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="text-black shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-                  required
-                />
-              </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-bold mb-2"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="text-black shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                      required
+                    />
+                  </div>
 
-              <div className="flex items-center justify-center">
-                <button
-                  type="submit"
-                  className="bg-yellow-700 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  <div className="mb-6">
+                    <label
+                      htmlFor="password"
+                      className="block  text-sm font-bold mb-2"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      className="text-black shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-center">
+                    <button
+                      type="submit"
+                      className="bg-yellow-700 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/signupform"
+          element={
+            <div className="text-center">
+              <h1 className="text-2xl font-bold mb-4">
+                Sign Up As {`${as}`}
+              </h1>
+              <div className="mx-4 text-center flex flex-col items-center justify-center">
+                <form
+                  onSubmit={handleSubmit}
+                  className=" p-6 rounded shadow-md w-full max-w-sm"
                 >
-                  Sign In
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      ) : showSignUpForm ? (
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">
-            Sign {`${sign}`} As {`${as}`}
-          </h1>
-          <div className="mx-4 text-center flex flex-col items-center justify-center">
-            <form
-              onSubmit={handleSubmit}
-              className=" p-6 rounded shadow-md w-full max-w-sm"
-            >
-              <div className="mb-4">
-                <label htmlFor="name" className="block  text-sm font-bold mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="text-black shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                  required
-                />
-              </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="name"
+                      className="block  text-sm font-bold mb-2"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="text-black shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                      required
+                    />
+                  </div>
 
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-bold mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="text-black shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                  required
-                />
-              </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-bold mb-2"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="text-black shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                      required
+                    />
+                  </div>
 
-              <div className="mb-6">
-                <label
-                  htmlFor="password"
-                  className="block  text-sm font-bold mb-2"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="text-black shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-                  required
-                />
-              </div>
+                  <div className="mb-6">
+                    <label
+                      htmlFor="password"
+                      className="block  text-sm font-bold mb-2"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      className="text-black shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                      required
+                    />
+                  </div>
 
-              <div className="flex items-center justify-center">
-                <button
-                  type="submit"
-                  className="bg-yellow-700 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                  Sign Up
-                </button>
+                  <div className="flex items-center justify-center">
+                    <button
+                      type="submit"
+                      className="bg-yellow-700 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-        </div>
-      ) : !something ? (
-        <div className="flex flex-col items-center justify-center text-black font-bold mx-4">
-          <button
-            onClick={() => {
-              handleClick();
-              setAs("User");
-            }}
-            className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
-          >
-            Join As User
-          </button>
-          <button
-            onClick={() => {
-              handleClick();
-              setAs("Admin");
-            }}
-            className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
-          >
-            Join As Admin
-          </button>
-        </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center text-black font-bold mx-4">
-          <button
-            onClick={() => {
-              handleClick();
-              handleSignIn();
-            }}
-            className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
-          >
-            Sign In
-          </button>
-          <button
-            onClick={() => {
-              handleClick();
-              handleSignUp();
-            }}
-            className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 focus:bg-yellow-600 cursor-pointer w-full my-2 text-center"
-          >
-            Sign Up
-          </button>
-        </div>
-      )}
+            </div>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <div className="flex flex-col items-center justify-center text-black font-bold mx-4">
+              <button
+                onClick={() => {
+                //   handleClick();
+                  setAs("User");
+                  navigate("/signinsignup")
+                }}
+                className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
+              >
+                Join As User
+              </button>
+              <button
+                onClick={() => {
+                //   handleClick();
+                  setAs("Admin");
+                  navigate("signinsignup")
+                }}
+                className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
+              >
+                Join As Admin
+              </button>
+            </div>
+          }
+        />
+        <Route
+          path="/signinsignup"
+          element={
+            <div className="flex flex-col items-center justify-center text-black font-bold mx-4">
+              <button
+                onClick={() => {
+                //   handleClick();
+                //   handleSignIn();
+                setSign("In")
+                navigate("signinform")
+                }}
+                className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => {
+                //   handleClick();
+                //   handleSignUp();
+                setSign("Up")
+                navigate("/signupform")
+                }}
+                className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 focus:bg-yellow-600 cursor-pointer w-full my-2 text-center"
+              >
+                Sign Up
+              </button>
+            </div>
+          }
+        />
+      </Routes>
+
       <p className="text-center text-red-700 px-16 50 h-16">{msg}</p>
-    </>
+    </div>
   );
 }
