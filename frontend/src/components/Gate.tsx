@@ -10,7 +10,6 @@ export default function Gate() {
   const [showSignInForm, setShowSignInForm] = useState(false);
   const [as, setAs] = useState("User");
   const [sign, setSign] = useState("In");
-  const [redirectTo, setRedirectTo] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,7 +27,7 @@ export default function Gate() {
     setMsg("");
   };
 
-  const handleSignIn = async () => {
+  const handleSignIn = () => {
     setShowSignInForm(true);
     setSign("In");
   };
@@ -62,8 +61,9 @@ export default function Gate() {
           password: formData.password,
         });
         setMsg("");
-        setRedirectTo("/user");
-        // navigate("/user");
+        console.log("setting redirect to: ", "/user"); //log1
+        localStorage.setItem("token", res.data.token);
+        navigate("/user");
       } catch (e) {
         setMsg("Invalid Credentials.");
       }
@@ -76,8 +76,8 @@ export default function Gate() {
           ...formData,
         });
         setMsg("");
-        // navigate("/user");
-        setRedirectTo("/user");
+        localStorage.setItem("token", res.data.token);
+        navigate("/user");
       } catch (e) {
         setMsg("There's An Error While Signing You Up.");
       }
@@ -87,8 +87,8 @@ export default function Gate() {
           ...formData,
         });
         setMsg("");
-        // navigate("/admin");
-        setRedirectTo("/admin");
+        localStorage.setItem("token", res.data.token);
+        navigate("/admin");
       } catch (e) {
         setMsg("Invalid Credentials.");
       }
@@ -101,8 +101,8 @@ export default function Gate() {
           ...formData,
         });
         setMsg("");
-        // navigate("/admin");
-        setRedirectTo("/admin");
+        localStorage.setItem("token", res.data.token);
+        navigate("/admin");
       } catch (e) {
         console.log("error: ", e);
         setMsg("There's An Error While Signing You Up.");
@@ -113,11 +113,11 @@ export default function Gate() {
       email: "",
       password: "",
     });
-    if (!res) {
-      return;
-    }
-    localStorage.setItem("token", res.data.token);
-    navigate(redirectTo);
+    // if (!res) {
+    //   return;
+    //   localStorage.setItem("token", res.data.token);
+    // }
+    console.log("control skipped navigate"); //log3
     console.log("response: ", res);
   };
   return (
