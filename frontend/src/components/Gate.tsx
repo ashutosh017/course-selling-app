@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 export const be_url = import.meta.env.VITE_BACKEND_URL;
 export default function Gate() {
@@ -39,7 +39,16 @@ export default function Gate() {
 //     // setSomething(true);
 //     // navigate("/signinsignup");
 //   };
+const location = useLocation()
+  useEffect(()=>{
+    setMsg("");
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+    });
 
+  },[location])
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,

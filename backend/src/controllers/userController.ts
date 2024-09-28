@@ -72,6 +72,7 @@ export const fetchUserCourses = async(req:Request, res:Response)=>{
             return await db.course.findUnique({ where: { id: i.courseId } });
           })
         );
+        console.log(courses)
         return res.json({
             courses
         })
