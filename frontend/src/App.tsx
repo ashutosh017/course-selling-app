@@ -6,8 +6,8 @@ import Admin from "./components/Admin";
 
 export default function App() {
   return (
-    <div className="bg-black w-screen  pb-10">
-      <div className=" text-white min-h-screen w-screen sm:w-4/5  ">
+    <div className="bg-black w-screen  pb-10 flex  justify-center">
+      <div className=" text-white min-h-screen w-screen sm:w-4/5 ">
         <Logo />
         <Routes>
           <Route path="*" element={<Gate />} />
