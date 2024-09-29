@@ -449,7 +449,7 @@ export default function Gate() {
                 }}
                 className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
               >
-                Sign In
+                Sign In As User
               </button>
               <button
                 onClick={() => {
@@ -457,7 +457,7 @@ export default function Gate() {
                 }}
                 className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 focus:bg-yellow-600 cursor-pointer w-full my-2 text-center"
               >
-                Sign Up
+                Sign Up As User
               </button>
             </div>
           }
@@ -472,7 +472,7 @@ export default function Gate() {
                 }}
                 className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 cursor-pointer w-full my-2 text-center"
               >
-                Sign In
+                Sign In As Admin
               </button>
               <button
                 onClick={() => {
@@ -480,7 +480,7 @@ export default function Gate() {
                 }}
                 className="bg-yellow-700 rounded-md py-2 text-xl hover:bg-yellow-600 focus:bg-yellow-600 cursor-pointer w-full my-2 text-center"
               >
-                Sign Up
+                Sign Up As Admin
               </button>
             </div>
           }

@@ -20,7 +20,7 @@ export const isAdminLoggedIn = (
     req.adminId = decodedToken.adminId;
     next();
   } catch (error) {
-    return res.status(403).json({ msg: "Invalid or expired token" });
+    return res.status(403).json({ msg: "Invalid or expired token" , token});
   }
 };
 

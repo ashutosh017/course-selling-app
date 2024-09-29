@@ -57,7 +57,7 @@ export default function Admin() {
            }
          );
          console.log(response.data);
-         alert("Course updated successfully: " + response.data.toString());
+         alert("Course updated successfully");
          setEditingCourseId(null);
        } catch (error) {
         console.log(error)
@@ -76,7 +76,7 @@ export default function Admin() {
             }
           );
           console.log(response.data);
-          alert("Course created successfully: " + response.data);
+          alert("Course created successfully");
        }catch(error){
         console.log(error)
        }
