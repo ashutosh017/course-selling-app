@@ -26,17 +26,18 @@ export const isAdminLoggedIn = (
 
 export const isCourseExists = async(req:Request, res:Response, next:NextFunction)=>{
   const adminId = req.adminId as string;
-  const {courseId} = req.body;
-  if(!adminId || !courseId){
+  const {id} = req.body;
+  if(!adminId || !id){
     return res.json({
-      msg:"adminId or courseId is missing"
+      msg:"adminId or courseId is missing",
+      adminId,id
     })
   }
   try{
 
     const foundCourse = await db.course.findUnique({
       where:{
-        id:courseId, adminId
+        id, adminId
       }
     })
     next();

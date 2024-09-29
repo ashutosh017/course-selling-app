@@ -101,12 +101,12 @@ export const createCourse = async (req: Request, res: Response) => {
 };
 export const updateCourse = async (req: Request, res: Response) => {
   const adminId = req.adminId as string
-  const {courseId, name,description,price,imgUrl} = req.body
+  const {id, name,description,price,imgUrl} = req.body
   try {
    
     const updateCourse = await db.course.update({
       where:{
-        id:courseId,adminId
+        id,adminId
       },data:{
         name,description,price,imgUrl
       }

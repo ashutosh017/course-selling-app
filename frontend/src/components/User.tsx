@@ -64,7 +64,7 @@ export default function User() {
     "available"
   );
   return (
-    <div className="bg-black py-8 mt-8">
+    <div className="bg-black ">
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-3xl font-bold mb-8 text-center text-white">
           {activeTab === "available" ? "Available Courses" : "My Courses"}
@@ -75,7 +75,7 @@ export default function User() {
             onClick={() => setActiveTab("available")}
             className={`px-4 py-2 text-white rounded ${
               activeTab === "available"
-                ? "bg-yellow-600"
+                ? "bg-yellow-700"
                 : "bg-gray-600 hover:bg-gray-500"
             }`}
           >
@@ -85,7 +85,7 @@ export default function User() {
             onClick={() => setActiveTab("purchased")}
             className={`px-4 py-2 text-white rounded ${
               activeTab === "purchased"
-                ? "bg-yellow-600"
+                ? "bg-yellow-700"
                 : "bg-gray-600 hover:bg-gray-500"
             }`}
           >
@@ -108,13 +108,13 @@ export default function User() {
                 <h2 className="text-xl font-semibold text-gray-900">
                   {course.name}
                 </h2>
-                <p className="mt-2 text-gray-600">{course.description}</p>
-                <p className="mt-4 text-lg font-bold text-yellow-600">
+                <p className="mt-2 text-gray-600 overflow-clip">{course.description}</p>
+                <p className="mt-4 text-lg font-bold text-yellow-700">
                   ${course.price}
                 </p>
                 <button
                   onClick={() => handlePurchase(course)}
-                  className="mt-4 bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-500 transition-colors duration-200"
+                  className="mt-4 bg-yellow-700 text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors duration-200"
                 >
                   Purchase
                 </button>
