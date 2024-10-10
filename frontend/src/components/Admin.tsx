@@ -39,7 +39,7 @@ export default function Admin() {
       }
     };
     fetchCourses();
-  }, []);
+  }, [allMyCourses]);
 
   const handleCreateOrUpdateCourse = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -263,3 +263,4 @@ export default function Admin() {
     </div>
   );
 }
+
