@@ -36,7 +36,7 @@ export default function User() {
       }
     };
     fetchCourses();
-  }, [allCourses,allMyCourses]);
+  }, []);
 
   const handlePurchase = async (course: Course) => {
     try {
