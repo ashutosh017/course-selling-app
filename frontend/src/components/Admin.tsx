@@ -47,6 +47,7 @@ export default function Admin() {
       if (editingCourseId) {
         // Update existing course
        try {
+        console.log("This is what I am editing: ",newCourse)
          const response = await axios.put(
            `${be_url}/admin/course/`,
            newCourse,
@@ -97,7 +98,7 @@ export default function Admin() {
     const { name, value } = e.target;
     setNewCourse({
       ...newCourse,
-      [name]: value,
+      [name]: name === "price" ? Number(value) : value,
     });
   };
 

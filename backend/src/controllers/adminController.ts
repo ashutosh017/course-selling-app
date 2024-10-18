@@ -108,7 +108,7 @@ export const updateCourse = async (req: Request, res: Response) => {
       where:{
         id,adminId
       },data:{
-        name,description,price,imgUrl
+        name,description,price, imgUrl
       }
     })
     return res.status(200).json({msg:"course updated successfully",updateCourse})
